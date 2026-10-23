@@ -33,13 +33,14 @@ public final class Avatar implements Icon {
 
     public Avatar(Contact contact, int size) {
         this.initials = contact.initials();
-        this.colour = colour(contact.label());
+        this.colour = colour(contact.uid());
         this.photo = image(contact.photo());
         this.size = size;
     }
 
-    static Color colour(String name) {
-        return COLOURS.get(Math.floorMod(name.hashCode(), COLOURS.size()));
+    /** From the UID, so a contact keeps its colour when it is renamed. */
+    static Color colour(String uid) {
+        return COLOURS.get(Math.floorMod(uid.hashCode(), COLOURS.size()));
     }
 
     static BufferedImage image(Photo photo) {
