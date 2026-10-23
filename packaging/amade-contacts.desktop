@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=amadeOS Contacts
+Name[de]=amadeOS Kontakte
+Name[fr]=amadeOS Contacts
+Name[es]=amadeOS Contactos
+Name[it]=amadeOS Contatti
+GenericName=Address Book
+GenericName[de]=Adressbuch
+GenericName[fr]=Carnet d'adresses
+GenericName[es]=Libreta de direcciones
+GenericName[it]=Rubrica
+Comment=People and organizations with phone numbers, e-mail and postal addresses
+Comment[de]=Personen und Firmen mit Telefonnummern, E-Mail- und Postadressen
+Comment[fr]=Personnes et sociétés avec numéros de téléphone, adresses électroniques et postales
+Comment[es]=Personas y empresas con teléfonos, direcciones de correo y postales
+Comment[it]=Persone e aziende con numeri di telefono, indirizzi e-mail e postali
+Icon=amade-contacts
+Exec=/usr/bin/amade-contacts %F
+Terminal=false
+Categories=Office;ContactManagement;
+MimeType=text/vcard;text/x-vcard;text/directory;
+Keywords=contacts;address book;addresses;vcard;people;phone;birthday;
+StartupNotify=true

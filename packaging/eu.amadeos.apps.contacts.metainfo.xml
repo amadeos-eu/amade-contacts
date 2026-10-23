@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AppStream metadata of amade-contacts, installed as /usr/share/metainfo/eu.amadeos.apps.contacts.metainfo.xml.
+     amadeOS Software shows it for the installed package; a repository's appstream-generator reads it too. -->
+<component type="desktop-application">
+  <id>eu.amadeos.apps.contacts</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>EUPL-1.2</project_license>
+
+  <name>amadeOS Contacts</name>
+  <name xml:lang="de">amadeOS Kontakte</name>
+  <name xml:lang="fr">amadeOS Contacts</name>
+  <name xml:lang="es">amadeOS Contactos</name>
+  <name xml:lang="it">amadeOS Contatti</name>
+
+  <summary>Keep addresses, phone numbers and birthdays</summary>
+  <summary xml:lang="de">Adressen, Telefonnummern und Geburtstage verwalten</summary>
+  <summary xml:lang="fr">Gérer adresses, numéros de téléphone et anniversaires</summary>
+  <summary xml:lang="es">Guardar direcciones, teléfonos y cumpleaños</summary>
+  <summary xml:lang="it">Gestire indirizzi, numeri di telefono e compleanni</summary>
+
+  <description>
+    <p>amade-contacts is the address book of the amadeOS desktop. Every contact is a vCard file of its own, so phones, other programs and synchronisation tools can read and change them too.</p>
+    <p xml:lang="de">amade-contacts ist das Adressbuch des amadeOS-Desktops. Jeder Kontakt ist eine eigene vCard-Datei, so dass Telefone, andere Programme und Synchronisationswerkzeuge sie ebenfalls lesen und ändern können.</p>
+    <p xml:lang="fr">amade-contacts est le carnet d'adresses du bureau amadeOS. Chaque contact est un fichier vCard à part, que les téléphones, d'autres programmes et les outils de synchronisation peuvent aussi lire et modifier.</p>
+    <p xml:lang="es">amade-contacts es la libreta de direcciones del escritorio amadeOS. Cada contacto es un archivo vCard propio, así que teléfonos, otros programas y herramientas de sincronización también pueden leerlos y cambiarlos.</p>
+    <p xml:lang="it">amade-contacts è la rubrica del desktop amadeOS. Ogni contatto è un file vCard a sé, così anche telefoni, altri programmi e strumenti di sincronizzazione possono leggerli e modificarli.</p>
+    <ul>
+      <li>Names, organizations, phone numbers, e-mail and postal addresses, websites, birthdays, notes and a photo</li>
+      <li xml:lang="de">Namen, Firmen, Telefonnummern, E-Mail- und Postadressen, Webseiten, Geburtstage, Notizen und ein Foto</li>
+      <li xml:lang="fr">Noms, organisations, numéros de téléphone, adresses e-mail et postales, sites web, anniversaires, notes et une photo</li>
+      <li xml:lang="es">Nombres, organizaciones, teléfonos, direcciones de correo y postales, sitios web, cumpleaños, notas y una foto</li>
+      <li xml:lang="it">Nomi, organizzazioni, numeri di telefono, indirizzi e-mail e postali, siti web, compleanni, note e una foto</li>
+      <li>Groups, a search over everything and a list of the coming birthdays</li>
+      <li xml:lang="de">Gruppen, eine Suche über alles und eine Liste der nächsten Geburtstage</li>
+      <li xml:lang="fr">Des groupes, une recherche dans tout et la liste des prochains anniversaires</li>
+      <li xml:lang="es">Grupos, una búsqueda en todo y una lista de los próximos cumpleaños</li>
+      <li xml:lang="it">Gruppi, una ricerca su tutto e l'elenco dei prossimi compleanni</li>
+      <li>Write a mail, call, or show an address on the map with one click</li>
+      <li xml:lang="de">Mit einem Klick eine Mail schreiben, anrufen oder eine Adresse auf der Karte zeigen</li>
+      <li xml:lang="fr">Écrire un e-mail, appeler ou montrer une adresse sur la carte en un clic</li>
+      <li xml:lang="es">Escribir un correo, llamar o mostrar una dirección en el mapa con un clic</li>
+      <li xml:lang="it">Scrivere una mail, chiamare o mostrare un indirizzo sulla mappa con un clic</li>
+      <li>Import from vCard, Google and Outlook CSV and Thunderbird LDIF, with duplicates merged; export in the same formats</li>
+      <li xml:lang="de">Import aus vCard, CSV von Google und Outlook und LDIF von Thunderbird, Doppelte werden zusammengeführt; Export in denselben Formaten</li>
+      <li xml:lang="fr">Import depuis vCard, CSV de Google et d'Outlook et LDIF de Thunderbird, avec fusion des doublons ; export dans les mêmes formats</li>
+      <li xml:lang="es">Importación desde vCard, CSV de Google y Outlook y LDIF de Thunderbird, uniendo duplicados; exportación en los mismos formatos</li>
+      <li xml:lang="it">Importazione da vCard, CSV di Google e Outlook e LDIF di Thunderbird, unendo i doppioni; esportazione negli stessi formati</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">amade-contacts.desktop</launchable>
+  <icon type="stock">amade-contacts</icon>
+  <categories>
+    <category>Office</category>
+    <category>ContactManagement</category>
+  </categories>
+
+  <url type="homepage">https://github.com/datazuul/amade-contacts</url>
+  <url type="bugtracker">https://github.com/datazuul/amade-contacts/issues</url>
+  <developer id="eu.amadeos">
+    <name>amadeOS Project</name>
+  </developer>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>The address book with groups, the list and a contact's card</caption>
+      <caption xml:lang="de">Das Adressbuch mit Gruppen, der Liste und der Karte eines Kontakts</caption>
+      <caption xml:lang="fr">Le carnet d'adresses avec les groupes, la liste et la fiche d'un contact</caption>
+      <caption xml:lang="es">La libreta con los grupos, la lista y la ficha de un contacto</caption>
+      <caption xml:lang="it">La rubrica con i gruppi, l'elenco e la scheda di un contatto</caption>
+      <image>https://raw.githubusercontent.com/datazuul/amade-contacts/main/docs/screenshots/amade-contacts.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Editing a contact</caption>
+      <caption xml:lang="de">Einen Kontakt bearbeiten</caption>
+      <caption xml:lang="fr">Modifier un contact</caption>
+      <caption xml:lang="es">Editar un contacto</caption>
+      <caption xml:lang="it">Modificare un contatto</caption>
+      <image>https://raw.githubusercontent.com/datazuul/amade-contacts/main/docs/screenshots/amade-contacts-editor.png</image>
+    </screenshot>
+  </screenshots>
+
+  <provides>
+    <binary>amade-contacts</binary>
+    <mediatype>text/vcard</mediatype>
+    <mediatype>text/x-vcard</mediatype>
+    <mediatype>text/directory</mediatype>
+  </provides>
+  <content_rating type="oars-1.1"/>
+</component>

@@ -1,0 +1,45 @@
+dn: cn=Elena Rossi,mail=elena.rossi@example.it
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Elena
+sn: Rossi
+cn: Elena Rossi
+mozillaNickname: Ele
+mail: elena.rossi@example.it
+mozillaSecondEmail: elena@rossi.example
+modifytimestamp: 0
+telephoneNumber: +39 02 555 0100
+mobile: +39 333 555 0101
+mozillaHomeStreet:: VmlhIEdhcmliYWxkaSA3
+mozillaHomeLocalityName: Milano
+mozillaHomePostalCode: 20121
+mozillaHomeCountryName: Italia
+o: Coro di Milano
+title: Soprano
+birthyear: 1990
+birthmonth: 11
+birthday: 05
+description:: TGllYnQgUHVjY2luaS4gU3BlaXN0IGdlcm4gw6RnYWlzY2gu
+
+dn: cn=Jonas Peters,mail=jonas.peters@example.com
+objectclass: top
+objectclass: person
+objectclass: mozillaAbPersonAlpha
+givenName: Jonas
+sn: Peters
+cn: Jonas Peters
+mail: jonas.peters@example.com
+homePhone: +49 40 555 678
+mozillaHomeUrl: https://jonas.example
+ /blog
+
+dn: cn=Opera friends
+objectclass: top
+objectclass: groupOfNames
+cn: Opera friends
+member: cn=Elena Rossi,mail=elena.rossi@example.it
+member: cn=Jonas Peters, mail=jonas.peters@example.com
+
