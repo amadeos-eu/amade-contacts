@@ -83,6 +83,7 @@ public record ColumnMapping(List<Target> targets) {
         List<String> words = words(header);
         Field field = field(words);
         if (field == Field.IGNORE) return Target.IGNORED;
+        // --8<-- [start:kind]
         Kind kind = Kind.OTHER;
         if (field.hasKind()) {
             if (field == Field.PHONE && any(words, "mobile", "mobil", "mobiltelefon", "handy", "cell", "cellular",
@@ -92,6 +93,7 @@ public record ColumnMapping(List<Target> targets) {
             else if (anyIn(words, HOME)) kind = Kind.HOME;
             if (group.isEmpty()) group = field.isAddress() ? kind.name() : header;
         }
+        // --8<-- [end:kind]
         return new Target(field, kind, group, labelColumn);
     }
 

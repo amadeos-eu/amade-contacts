@@ -33,6 +33,7 @@ public final class ContactImport {
         return (int) imported.stream().filter(i -> match(known, i.contact()).isPresent()).count();
     }
 
+    // --8<-- [start:apply]
     public static Result apply(AddressBooks books, List<Imported> imported, Options options) {
         int added = 0, merged = 0;
         List<String> uids = new ArrayList<>();
@@ -57,6 +58,7 @@ public final class ContactImport {
         }
         return new Result(added, merged, uids);
     }
+    // --8<-- [end:apply]
 
     private static Optional<StoredContact> match(List<StoredContact> known, Contact contact) {
         return known.stream().filter(k -> contact.emails().stream().anyMatch(e -> k.contact().hasEmail(e.value())))

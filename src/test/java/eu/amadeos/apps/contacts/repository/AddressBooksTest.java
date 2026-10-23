@@ -66,6 +66,7 @@ class AddressBooksTest {
         assertEquals(List.of(new StoredContact("personal", anna)), again.contacts());
     }
 
+    // --8<-- [start:foreign]
     @Test
     void anEditKeepsTheFileAndForeignProperties() throws Exception {
         Path book = Files.createDirectories(root.resolve("personal"));
@@ -85,6 +86,7 @@ class AddressBooksTest {
             assertEquals(1, list.filter(p -> p.toString().endsWith(".vcf")).count(), "no second file");
         }
     }
+    // --8<-- [end:foreign]
 
     @Test
     void reloadFollowsOtherPrograms() throws Exception {

@@ -282,11 +282,13 @@ public class MainPresenter {
     }
 
     /** "Anna Berger &lt;anna@example.org&gt;", with quotes if the name has special characters. */
+    // --8<-- [start:mailbox]
     static String mailbox(String name, String address) {
         if (name.isBlank() || name.equalsIgnoreCase(address)) return address;
         String n = name.matches("[\\p{L}\\p{N} .'-]*") ? name : "\"" + name.replace("\\", "\\\\").replace("\"", "\\\"") + "\"";
         return n + " <" + address + ">";
     }
+    // --8<-- [end:mailbox]
 
     private static String encodeMailbox(String mailbox) {
         return URLEncoder.encode(mailbox, StandardCharsets.UTF_8).replace("+", "%20").replace("%40", "@");
