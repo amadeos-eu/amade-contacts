@@ -93,6 +93,7 @@ public record Contact(String uid, Name name, String displayName, String nickname
      * a postal address or a group, ignoring case and accents; digits also match phone numbers whatever the spaces,
      * dashes and brackets in them.
      */
+    // --8<-- [start:matches]
     public boolean matches(String query) {
         String q = fold(query);
         if (q.isBlank()) return true;
@@ -111,6 +112,7 @@ public record Contact(String uid, Name name, String displayName, String nickname
         }
         return true;
     }
+    // --8<-- [end:matches]
 
     /** The initials for the picture placeholder: "AB" for Anna Berger, "L" for Lindner &amp; Partner. */
     public String initials() {

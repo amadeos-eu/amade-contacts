@@ -172,6 +172,7 @@ public final class VCards {
      * Writes the contact into {@code card}: properties that mean the same as before stay untouched, the others are
      * replaced. Also sets UID, FN (required by vCard 4.0), REV and PRODID.
      */
+    // --8<-- [start:update]
     public static VCard update(VCard card, Contact contact, Instant now) {
         Contact before = toContact(card);
         if (card.getUid() == null || !contact.uid().equals(before.uid())) card.setUid(new Uid(contact.uid()));
@@ -184,6 +185,7 @@ public final class VCards {
             card.removeProperties(FormattedName.class);
             card.setFormattedName(fn);
         }
+    // --8<-- [end:update]
         if (!contact.nickname().equals(before.nickname())) {
             card.removeProperties(Nickname.class);
             if (!contact.nickname().isEmpty()) card.setNickname(contact.nickname().split("\\s*,\\s*"));

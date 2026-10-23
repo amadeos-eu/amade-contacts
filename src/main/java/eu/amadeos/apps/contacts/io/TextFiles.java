@@ -20,6 +20,7 @@ public final class TextFiles {
     private TextFiles() {
     }
 
+    // --8<-- [start:detect]
     public static Charset detect(byte[] bytes) {
         if (startsWith(bytes, 0xEF, 0xBB, 0xBF)) return StandardCharsets.UTF_8;
         if (startsWith(bytes, 0xFE, 0xFF) || startsWith(bytes, 0xFF, 0xFE)) return StandardCharsets.UTF_16;
@@ -31,6 +32,7 @@ public final class TextFiles {
             return WINDOWS_1252;
         }
     }
+    // --8<-- [end:detect]
 
     public static String decode(byte[] bytes, Charset charset) {
         String text = new String(bytes, charset);

@@ -16,7 +16,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.FileTime;
@@ -91,6 +90,7 @@ public class AddressBooks {
             for (Path book : books) {
                 String id = book.getFileName().toString();
                 names.put(id, displayName(book));
+                // --8<-- [start:reload]
                 for (Path file : vcfFiles(book)) {
                     Card known = byFile.get(file);
                     FileTime modified = Files.getLastModifiedTime(file);
@@ -99,6 +99,7 @@ public class AddressBooks {
                     Card clash = fresh.putIfAbsent(card.contact().uid(), card);
                     if (clash != null) LOG.warn("{} and {} have the same UID; only the first is shown", clash.file(), file);
                 }
+                // --8<-- [end:reload]
             }
             boolean changed = !fresh.equals(cards) || !names.equals(bookNames);
             cards.clear();
@@ -201,6 +202,7 @@ public class AddressBooks {
      * Like {@link #save(String, Contact)}, starting from an imported vCard for a new contact, so its other
      * properties are kept too.
      */
+    // --8<-- [start:save]
     public synchronized StoredContact save(String book, Contact contact, VCard imported) {
         Card known = cards.get(contact.uid());
         String bookId = known != null ? known.book() : book;
@@ -218,6 +220,7 @@ public class AddressBooks {
             throw new UncheckedIOException(e);
         }
     }
+    // --8<-- [end:save]
 
     /** Deletes a contact's file; false if it was already gone. */
     public synchronized boolean delete(String uid) {
@@ -240,6 +243,7 @@ public class AddressBooks {
         return base + ".vcf";
     }
 
+    // --8<-- [start:atomic]
     static void writeAtomically(Path file, String text) throws IOException {
         Files.createDirectories(file.getParent());
         Path temp = file.resolveSibling("." + file.getFileName() + ".tmp");
@@ -248,8 +252,7 @@ public class AddressBooks {
             Files.move(temp, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
         } catch (AtomicMoveNotSupportedException e) {
             Files.move(temp, file, StandardCopyOption.REPLACE_EXISTING);
-        } catch (NoSuchFileException e) {
-            throw e;
         }
     }
+    // --8<-- [end:atomic]
 }

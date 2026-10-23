@@ -91,6 +91,7 @@ class CsvTest {
         assertEquals("Wine supplier", g.note());
     }
 
+    // --8<-- [start:outlook-de]
     @Test
     void readsGermanOutlookInWindows1252() {
         ImportFile file = Samples.file("outlook-de.csv");
@@ -105,6 +106,7 @@ class CsvTest {
         assertEquals(new Birthday(1965, 12, 24), j.birthday());
         assertEquals(Set.of("Kunden"), j.groups());
     }
+    // --8<-- [end:outlook-de]
 
     @Test
     void handMadeTables() {
