@@ -1,0 +1,19 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//macOS 14.0//EN
+N:Okafor;David;;;
+FN:David Okafor
+ORG:City Library;Music Department;
+TITLE:Librarian
+item1.EMAIL;type=INTERNET;type=pref:d.okafor@example.org
+item1.X-ABLabel:_$!<Other>!$_
+TEL;type=CELL;type=VOICE;type=pref:+44 7700 900123
+ADR;type=WORK;type=pref:;;1 Library Way\nFloor 2;London;;EC1A 1BB;United Kingdom
+BDAY;VALUE=date:1604-07-21
+IMPP;X-SERVICE-TYPE=Matrix;type=pref:matrix:u/david:example.org
+X-SOCIALPROFILE;type=mastodon:https://social.example/@david
+CATEGORIES:Choir,Library
+NOTE:Lends us sheet music.
+PHOTO;ENCODING=b;TYPE=PNG:iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==
+UID:F3A1C2D4-1111-2222-3333-444455556666
+END:VCARD
