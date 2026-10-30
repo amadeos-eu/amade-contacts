@@ -1,6 +1,6 @@
 # amade-contacts
 
-**amade-contacts** is the address book of the [amadeOS](https://github.com/datazuul/amadeos) desktop: people and organizations with phone numbers, e-mail and postal addresses, birthdays, groups, notes and a photo. Every contact is a vCard file of its own, so phones, other programs and synchronisation tools can read it too. Built like the other amadeOS applications.
+**amade-contacts** is the address book of the [amadeOS](https://github.com/amadeos-eu/amadeos) desktop: people and organizations with phone numbers, e-mail and postal addresses, birthdays, groups, notes and a photo. Every contact is a vCard file of its own, so phones, other programs and synchronisation tools can read it too. Built like the other amadeOS applications.
 
 ![License](https://img.shields.io/badge/license-EUPL--1.2-blue)
 ![Java](https://img.shields.io/badge/Java-25-orange)
@@ -18,7 +18,7 @@
 - **Clipboard**: Ctrl+C copies "Name &lt;address&gt;" lines for a mail, Ctrl+Shift+C the contacts as vCards, Ctrl+V adds vCards from the clipboard.
 - Sort by first or last name (*View*). Files changed by other programs are read again when the window becomes active.
 - Five languages (English, Deutsch, Français, Español, Italiano), following the amadeOS desktop language; *Options → Language* overrides it.
-- Theme colours and Motif look from [amade-commons](https://github.com/datazuul/amade-commons).
+- Theme colours and Motif look from [amade-commons](https://github.com/amadeos-eu/amade-commons).
 
 ## Where the contacts are
 
