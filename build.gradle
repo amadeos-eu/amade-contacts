@@ -5,7 +5,7 @@ plugins {
 
 group = 'eu.amadeos'
 // CI computes the version from the Conventional Commits since the last release tag and passes it as
-// -PappVersion (datazuul/amadeos-ci scripts/next-version.sh); a build without it is a local development build.
+// -PappVersion (amadeos-eu/amadeos-ci scripts/next-version.sh); a build without it is a local development build.
 version = findProperty('appVersion') ?: '0.0.0-dev.0'
 // Debian sorts 1.1.0~dev.57 before 1.1.0 (with - it would sort after it).
 def debVersion = version.toString().replace('-', '~')
@@ -28,7 +28,7 @@ repositories {
 dependencies {
     // Theme, Motif look, start-up and XDG helpers shared by all amadeOS applications.
     // With ../amade-commons checked out, settings.gradle builds that checkout instead (composite build).
-    implementation 'com.github.datazuul:amade-commons:3d29a85a03'
+    implementation 'com.github.amadeos-eu:amade-commons:3d29a85a03'
     // vCard 2.1, 3.0 and 4.0. Its HTML (hCard) and JSON (jCard) support is not used; leaving out jsoup and
     // Jackson keeps the package small. Its text reader needs FreeMarker's exception class, so that one stays.
     implementation('com.googlecode.ez-vcard:ez-vcard:0.12.2') {

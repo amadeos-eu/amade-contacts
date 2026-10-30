@@ -55,8 +55,8 @@
     <category>ContactManagement</category>
   </categories>
 
-  <url type="homepage">https://github.com/datazuul/amade-contacts</url>
-  <url type="bugtracker">https://github.com/datazuul/amade-contacts/issues</url>
+  <url type="homepage">https://github.com/amadeos-eu/amade-contacts</url>
+  <url type="bugtracker">https://github.com/amadeos-eu/amade-contacts/issues</url>
   <developer id="eu.amadeos">
     <name>amadeOS Project</name>
   </developer>
@@ -68,7 +68,7 @@
       <caption xml:lang="fr">Le carnet d'adresses avec les groupes, la liste et la fiche d'un contact</caption>
       <caption xml:lang="es">La libreta con los grupos, la lista y la ficha de un contacto</caption>
       <caption xml:lang="it">La rubrica con i gruppi, l'elenco e la scheda di un contatto</caption>
-      <image>https://raw.githubusercontent.com/datazuul/amade-contacts/main/docs/screenshots/amade-contacts.png</image>
+      <image>https://raw.githubusercontent.com/amadeos-eu/amade-contacts/main/docs/screenshots/amade-contacts.png</image>
     </screenshot>
     <screenshot>
       <caption>Editing a contact</caption>
@@ -76,7 +76,7 @@
       <caption xml:lang="fr">Modifier un contact</caption>
       <caption xml:lang="es">Editar un contacto</caption>
       <caption xml:lang="it">Modificare un contatto</caption>
-      <image>https://raw.githubusercontent.com/datazuul/amade-contacts/main/docs/screenshots/amade-contacts-editor.png</image>
+      <image>https://raw.githubusercontent.com/amadeos-eu/amade-contacts/main/docs/screenshots/amade-contacts-editor.png</image>
     </screenshot>
   </screenshots>
 
