@@ -6,6 +6,7 @@ import eu.amadeos.apps.contacts.domain.PostalAddress;
 import eu.amadeos.apps.contacts.domain.StoredContact;
 import eu.amadeos.commons.i18n.Messages;
 import eu.amadeos.commons.swing.AmadeUI;
+import eu.amadeos.commons.swing.ToolIcon;
 import eu.amadeos.commons.theme.DesktopTheme;
 
 import javax.swing.BorderFactory;
@@ -22,6 +23,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -115,6 +117,11 @@ final class ContactCard extends JPanel implements Scrollable {
             section("card.website");
             for (String w : c.websites()) row("", w, true, "card.open", () -> presenter.openWebsite(w));
         }
+        List<String> callKeys = presenter.callKeys(c.uid());
+        if (!callKeys.isEmpty()) {
+            section("card.amade-call");
+            for (String key : callKeys) callRow(key);
+        }
         if (!c.note().isEmpty()) {
             section("card.note");
             JTextArea note = new JTextArea(c.note());
@@ -162,6 +169,40 @@ final class ContactCard extends JPanel implements Scrollable {
         }
         row.setMaximumSize(new Dimension(Integer.MAX_VALUE, row.getPreferredSize().height + 2));
         add(row);
+    }
+
+    /** A key of the call program with buttons for a video call, an audio call and a chat. */
+    private void callRow(String key) {
+        JPanel row = new JPanel(new BorderLayout(8, 0));
+        row.setOpaque(false);
+        row.setAlignmentX(LEFT_ALIGNMENT);
+        JLabel k = dim("");
+        k.setPreferredSize(new Dimension(kindWidth(), k.getPreferredSize().height));
+        row.add(k, BorderLayout.WEST);
+        JLabel v = new JLabel(MainPresenter.shortKey(key));
+        v.setName("card.value");
+        v.setToolTipText(msg.get("card.amade-call.key"));
+        row.add(v, BorderLayout.CENTER);
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT, 4, 0));
+        buttons.setOpaque(false);
+        buttons.add(callButton("card.video-call", ContactsGlyph.VIDEO_CALL, () -> presenter.startCall(key, "video")));
+        buttons.add(callButton("card.audio-call", ContactsGlyph.CALL, () -> presenter.startCall(key, "audio")));
+        buttons.add(callButton("card.chat", ContactsGlyph.CHAT, () -> presenter.startCall(key, "chat")));
+        row.add(buttons, BorderLayout.EAST);
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, row.getPreferredSize().height + 2));
+        add(row);
+    }
+
+    /** An icon button; its text is the tooltip. */
+    private JButton callButton(String key, ContactsGlyph glyph, Runnable action) {
+        JButton b = new JButton(new ToolIcon(glyph, Math.round(16 * AmadeUI.fontScale())));
+        b.setName(key);
+        b.setToolTipText(msg.get(key));
+        b.getAccessibleContext().setAccessibleName(msg.get(key));
+        b.setMargin(new Insets(1, 4, 1, 4));
+        b.setFocusable(false);
+        b.addActionListener(e -> action.run());
+        return b;
     }
 
     private int kindWidth() {

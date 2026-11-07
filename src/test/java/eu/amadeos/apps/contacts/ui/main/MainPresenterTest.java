@@ -149,6 +149,24 @@ class MainPresenterTest {
     }
 
     @Test
+    void aCallKeyFromTheCallProgramStartsAVideoCallAudioCallOrChat() throws Exception {
+        String key = "b953cde31335399f".repeat(4);
+        // As amade-call writes it with Person > Add to Contacts, plus a foreign IMPP that is left alone.
+        Files.writeString(dir.resolve("contacts").resolve("personal").resolve("dora.vcf"),
+                "BEGIN:VCARD\r\nVERSION:4.0\r\nUID:urn:uuid:dora\r\nFN:Dora Lenz\r\n"
+                        + "IMPP:xmpp:dora@example.org\r\nIMPP:amadeos-call:" + key + "\r\n"
+                        + "IMPP:amadeos-call:" + key.toUpperCase() + "\r\nEND:VCARD\r\n", StandardCharsets.UTF_8);
+        fixture.books.reload();
+        assertEquals(List.of(key), presenter.callKeys("urn:uuid:dora"));
+        assertEquals(List.of(), presenter.callKeys("anna"));
+        assertEquals("b953 cde3 1335 399f", MainPresenter.shortKey(key));
+        edt(() -> presenter.startCall(key, "video"));
+        edt(() -> presenter.startCall(key, "chat"));
+        assertEquals(List.of("amadeos-call:" + key + "?kind=video", "amadeos-call:" + key + "?kind=chat"),
+                fixture.browsed);
+    }
+
+    @Test
     void callsWithATelLinkOrCopiesTheNumber() throws Exception {
         edt(presenter::call);
         assertEquals(List.of("tel:+491705550101"), fixture.browsed);
