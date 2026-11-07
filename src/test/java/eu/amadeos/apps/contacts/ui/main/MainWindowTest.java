@@ -43,6 +43,37 @@ class MainWindowTest {
     }
 
     @Test
+    void aContactWithACallKeyHasCallButtons() throws Exception {
+        open();
+        String key = "0f6e3ea2f8d4c8c6".repeat(4);
+        Path file = fixture.books.file("anna").orElseThrow();
+        java.nio.file.Files.writeString(file, java.nio.file.Files.readString(file)
+                        .replace("END:VCARD", "IMPP:amadeos-call:" + key + "\r\nEND:VCARD"));
+        OnEdt.run(() -> {
+            fixture.books.reload();
+            presenter.selectContacts(List.of("anna"));
+            List<String> values = window.card().values();
+            assertTrue(values.contains("0f6e 3ea2 f8d4 c8c6"), values.toString());
+            javax.swing.JButton video = find(window.card(), "card.video-call");
+            assertEquals("Video call", video.getToolTipText());
+            video.doClick();
+            assertEquals(List.of("amadeos-call:" + key + "?kind=video"), fixture.browsed);
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T extends java.awt.Component> T find(java.awt.Container in, String name) {
+        for (java.awt.Component c : in.getComponents()) {
+            if (name.equals(c.getName())) return (T) c;
+            if (c instanceof java.awt.Container k) {
+                T found = find(k, name);
+                if (found != null) return found;
+            }
+        }
+        return null;
+    }
+
+    @Test
     void showsTheListsAndTheCard() throws Exception {
         open();
         OnEdt.run(() -> {

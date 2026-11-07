@@ -19,6 +19,9 @@ import eu.amadeos.apps.contacts.ui.transfer.ExportChoice;
 import eu.amadeos.apps.contacts.ui.transfer.ImportChoice;
 import eu.amadeos.apps.contacts.ui.transfer.ImportPreview;
 import eu.amadeos.commons.desktop.DesktopLauncher;
+import java.net.URI;
+import ezvcard.property.Impp;
+import ezvcard.VCard;
 import eu.amadeos.commons.i18n.Language;
 import eu.amadeos.commons.i18n.LocaleSettings;
 import eu.amadeos.commons.i18n.Messages;
@@ -51,6 +54,8 @@ public class MainPresenter {
     private static final Logger LOG = LoggerFactory.getLogger(MainPresenter.class);
 
     /** What the presenter works with, so tests can pass their own. */
+    private static final String CALL_SCHEME = "amadeos-call";
+
     public record Services(AddressBooks books, ContactsPreferences preferences, DesktopLauncher launcher, Clock clock,
                            Runnable exit) {
     }
@@ -309,6 +314,37 @@ public class MainPresenter {
             view.showInfo(msg.format("info.number-copied", number));
         }
     }
+
+    // --8<-- [start:amade-call]
+    /** The keys under which the call program reaches a contact: its {@code IMPP:amadeos-call:<key>} lines. */
+    public List<String> callKeys(String uid) {
+        return services.books().vcard(uid).map(MainPresenter::callKeys).orElse(List.of());
+    }
+
+    static List<String> callKeys(VCard card) {
+        List<String> keys = new ArrayList<>();
+        for (Impp impp : card.getImpps()) {
+            URI uri = impp.getUri();
+            if (uri == null || !CALL_SCHEME.equalsIgnoreCase(uri.getScheme())) continue;
+            String key = uri.getSchemeSpecificPart();
+            if (key == null) continue;
+            int query = key.indexOf('?');
+            key = (query < 0 ? key : key.substring(0, query)).replace(" ", "").toLowerCase(Locale.ROOT);
+            if (key.matches("[0-9a-f]{64}") && !keys.contains(key)) keys.add(key);
+        }
+        return keys;
+    }
+
+    /** Hands the contact to the call program: {@code kind} is video, audio or chat. */
+    public void startCall(String key, String kind) {
+        browse(CALL_SCHEME + ":" + key + "?kind=" + kind);
+    }
+
+    /** The first 16 characters of a key in groups of four, as the call program shows them. */
+    static String shortKey(String key) {
+        return key.substring(0, 4) + " " + key.substring(4, 8) + " " + key.substring(8, 12) + " " + key.substring(12, 16);
+    }
+    // --8<-- [end:amade-call]
 
     public void showOnMap(PostalAddress address) {
         browse("https://www.openstreetmap.org/search?query="

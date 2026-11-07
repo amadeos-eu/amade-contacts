@@ -2,13 +2,15 @@ package eu.amadeos.apps.contacts.ui.main;
 
 import eu.amadeos.commons.swing.ToolIcon;
 
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 /** The address book's own toolbar icons, next to the {@link eu.amadeos.commons.swing.StandardGlyph}s. */
 public enum ContactsGlyph implements ToolIcon.Glyph {
-    NEW_CONTACT, CALL;
+    NEW_CONTACT, CALL, VIDEO_CALL, CHAT;
 
     // --8<-- [start:paint]
     @Override
@@ -23,6 +25,27 @@ public enum ContactsGlyph implements ToolIcon.Glyph {
                 pen.thin();
             }
             case CALL -> handset(pen);
+            case VIDEO_CALL -> {
+                pen.fillAndDraw(new RoundRectangle2D.Double(1.5, 4.5, 9, 7, 2, 2), pen.light());
+                Path2D lens = new Path2D.Double();
+                lens.moveTo(10.5, 7);
+                lens.lineTo(14.5, 4.5);
+                lens.lineTo(14.5, 11.5);
+                lens.lineTo(10.5, 9);
+                lens.closePath();
+                pen.fillAndDraw(lens, pen.light());
+            }
+            case CHAT -> {
+                Area bubble = new Area(new RoundRectangle2D.Double(1.5, 2.5, 13, 8.5, 5, 5));
+                Path2D tail = new Path2D.Double();
+                tail.moveTo(4, 10);
+                tail.lineTo(3.5, 14.5);
+                tail.lineTo(8, 10);
+                tail.closePath();
+                bubble.add(new Area(tail));
+                pen.fillAndDraw(bubble, pen.paper());
+                for (double x : new double[] {5, 8, 11}) pen.fill(new Ellipse2D.Double(x - 1, 5.75, 2, 2), pen.ink());
+            }
         }
     }
     // --8<-- [end:paint]
